@@ -1,0 +1,54 @@
+\documentclass{article}
+
+    \title{Personalized Medicine: Redefining Cancer Treatment}
+    \author{Susie Elangbam, Hosung, Quan Le, Varun Verma, Eric Stone}
+    
+    \begin{document}
+    \maketitle
+    
+    \iffalse
+    this won't appear in the final pdf.  just a reminder for anyone contributing.  
+    REQUIREMENTS (verbatim as written in the doc)
+    At a minimum, your final report must 
+    describe the problem/application and motivation, survey related work, discuss your approach, and explain your
+    results/conclusions/impact of your project. It should include enough detail such that someone else can reproduce
+    your method and results. You are also required to provide a link to a GitHub repository where your code is stored.
+    SUBMITTING DETAILS
+    Save your report as a PDF file of 5 pages or less. Again, The corresponding member of the team should submit
+    the final PDF and the GitHub link through Sakai by the announced deadline.
+    \fi
+    
+    \section{Introduction}
+    \subsection{Problem}
+    This project revisits a competition that was hosted on Kaggle.  With the collaboration of researchers at Memorial Sloan Kettering Cancer Center, people are seeking ways to use genetic sequencing data to better improve our understanding of cancer and produce more targeted treatments.  Researchers, specifically, are trying to classify one of 9 classes of genetic mutation.  Currently, the interpretation is manually classfied, using evidence from clinical text. Thus, this project seeks to develop a way to classify the genetic mutation using known ML algorithms in order to help reduce the tedious process. 
+    \subsection{Structure of the Data}
+    Since this is from a Kaggle competition, the data utilized in training and testing the models are from Kaggle.  Because the clinical field primarily label genetic material with strings to classify mutation, data is primarily strings. In particular, the data comes in 3 types: Gene, Variation, and text files, which seem to be passages clinical text.  Similarly, since the text file field comes from a clinical passage, some amount of data cleaning is required.  Using the spacy library, stop words are filtered out of the text files.  Likewise, to understand the distrobution of the data, the data has been charted in these figures in the repository: class.png, gene.png, and variation.png.  
+    \subsection{Survey of Related Works}
+    As this is a classification problem with string inputs there are many known models such Bag of Words, Neural Network, etc.  From looking at known kernels, possible suggested algorithms are Bag of Words, TF-IDF, Word2Vec with reported accuracies of 0.504, 0.551, 0.578, respectively.\footnote{This kernel has simple implementations of these methods with no data cleaning.  This project's Bag of Words approach is different in that in take into account variation and gene without the text file unlike the known kernel, which operates under just the text file}  This project's approach for this problem consist of 3 different methods: Bag of Words, LSTM, and Neural Network.  
+    
+    \section{Method}
+    \subsection{Bag of Words}
+    The simplest model implemented.  Currently the model runs bag of words on both variation and gene field without using the text field.  
+    \subsection{sincosine?LSTM?}
+    eric/varun should fill this out
+    \subsection{Neural Network}
+    One way to do the classification is through a neural network.  While neural networks
+    
+    
+    
+    \section{Results}
+    tables and stuff and results
+    
+    \section{Conclusion}
+    something conclusion
+    
+    \pagebreak
+    \begin{thebibliography}{9}
+        \bibitem{kagglekernel} 
+        Basic NLP: Bag of Words, TF-IDF, Word2Vec, LSTM
+        \\\texttt{https://www.kaggle.com/reiinakano/basic-nlp-bag-of-words-tf-idf-word2vec-lstm}
+      
+         
+    \end{thebibliography}
+    
+    \end{document}
