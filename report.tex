@@ -1,7 +1,7 @@
 \documentclass{article}
 
     \title{Personalized Medicine: Redefining Cancer Treatment}
-    \author{Susie Elangbam, Hosung, Quan Le, Varun Verma, Eric Stone}
+    \author{Susie Elangbam, Hosung Hwang, Quan Le, Varun Verma, Eric Stone}
     
     \begin{document}
     \maketitle
@@ -22,25 +22,28 @@
     \subsection{Problem}
     This project revisits a competition that was hosted on Kaggle.  With the collaboration of researchers at Memorial Sloan Kettering Cancer Center, people are seeking ways to use genetic sequencing data to better improve our understanding of cancer and produce more targeted treatments.  Researchers, specifically, are trying to classify one of 9 classes of genetic mutation.  Currently, the interpretation is manually classfied, using evidence from clinical text. Thus, this project seeks to develop a way to classify the genetic mutation using known ML algorithms in order to help reduce the tedious process. 
     \subsection{Structure of the Data}
-    Since this is from a Kaggle competition, the data utilized in training and testing the models are from Kaggle.  Because the clinical field primarily label genetic material with strings to classify mutation, data is primarily strings. In particular, the data comes in 3 types: Gene, Variation, and text files, which seem to be passages clinical text.  Similarly, since the text file field comes from a clinical passage, some amount of data cleaning is required.  Using the spacy library, stop words are filtered out of the text files.  Likewise, to understand the distrobution of the data, the data has been charted in these figures in the repository: class.png, gene.png, and variation.png.  
+    Since this is from a Kaggle competition, the data utilized in training and testing the models are from Kaggle.  Because the clinical field primarily label genetic material with strings to classify mutation, data is primarily strings. In particular, the data comes in 3 types: Gene, Variation, and text files, which seem to be passages clinical text.  Similarly, since the text file field comes from a clinical passage, some amount of data cleaning is required.  Using the spacy library, stop words are filtered out of the text files.  Likewise, to understand the distribution of the data, the data has been charted in these figures in the repository: class.png, gene.png, and variation.png.  
     \subsection{Survey of Related Works}
-    As this is a classification problem with string inputs there are many known models such Bag of Words, Neural Network, etc.  From looking at known kernels, possible suggested algorithms are Bag of Words, TF-IDF, Word2Vec with reported accuracies of 0.504, 0.551, 0.578, respectively.\footnote{This kernel has simple implementations of these methods with no data cleaning.  Bag of Words Has slight difference in implementation than this project's approach}  This project's approach for this problem consist of 3 different methods: Bag of Words, LSTM, and Neural Network.  
+    As this is a classification problem with string inputs there are many known models such Bag of Words, Neural Network, etc.  From looking at known kernels, possible suggested algorithms are Bag of Words, TF-IDF, Word2Vec with reported accuracies of 50.4\%, 55.1\%, 57.8\%, respectively.\footnote{This kernel has simple implementations of these methods with no data cleaning.  Bag of Words Has slight difference in implementation than this project's approach}  This project's approach for this problem consist of 3 different methods: Bag of Words, generic Neural Network, and LSTM Neural Network.  
     
     \section{Method}
     \subsection{Bag of Words}
     The simplest model implemented.  Currently the model runs bag of words on both variation and gene field without using the text field.  
-    \subsection{sincosine?LSTM?}
-    eric/varun should fill this out
     \subsection{Neural Network}
-    One way to do the classification is through a neural network.  While neural networks
+    In order to set up the neural network, the data for neural network requires building a bag of words. First, we built a dictionary from the 3321 samples. Each key of the dictionary is a unique word in the original database, and the value of the dictionary is the frequency of occurrence of each word in the original database. Then, we removed the keys whose length was equal to 1 from the dictionary in order to optimize the code running time when training the neural network and do away with extraneous entities in the data set. Finally, we filtered out any key which had a frequency that ranked less than 10 or more than 90.  The results are a final bag of words that has 21,362 keys, which are all in lowercase.  After the data been built, we looked into the algorithms and techniques for the Neural Network.  In this approach, we built a forward-propagation neural network by utilizing the tensorflow library to determine the accuracy of our method in relation to the question at hand. In order to optimize the running time of the neural network training, we used sixty threads concurrently in our Google Colab code implementation, significantly improving the training time from several hours to just under an hour. The structure of the Neural Network has 4 layers.  The Layers are then configured with Layer 1 as an input layer with tf.layers.Flatten, Layer 2 as a hidden layer with 4096 layers, Layer 3 as another hidden layer, and Layer 4 as the output layer.  
+    
+    \subsection{LSTM Neural Network}
+    varun should fill this out
+    
+
     
     
     
     \section{Results}
-    tables and stuff and results
+    Once we tested all the models we have found that the bag of words, neural network, and LSTM, has an accuracy of 50\%, 20\%, and 54\%, respectively.  In particular it seems that the generic neural network did the worst while the LSTM neural network did the best.  With a 54\% as the best result we got, it seems that we have not done better than the researched TF-IDF model.  
     
     \section{Conclusion}
-    something conclusion
+    At the end of the day, we have not seem to found a model can compare to the tedious process that the researchers go through when categorizing mutuations.  But while this is not a direct solution, the models we constructed could be modified further to get better results in the future.    
     
     \pagebreak
     \begin{thebibliography}{9}
